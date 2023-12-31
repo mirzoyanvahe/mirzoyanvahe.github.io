@@ -44,7 +44,7 @@ body {
 }
 
 #me_info h1 {
-    color: #5d5d5d;
+    color: #143d59;
     margin-bottom: 15px;
 }
 
@@ -68,7 +68,7 @@ body {
 }
 
 #me_info h3 {
-    color:rgb(75, 75, 75);
+    color: #143d59;
     text-transform: capitalize;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -83,7 +83,7 @@ body {
 
 .soc a {
     color: #fff;
-    background: rgb(59, 59, 59);
+    background: #143d59;
     padding: 5px 10px;
     font-size: 18px;
     border: 2px solid transparent;
@@ -93,7 +93,7 @@ body {
 
 .soc a:hover {
     background: unset;
-    color: rgb(59, 59, 59);
+    color: #143d59;
     border: 2px solid rgb(59, 59, 59);;
 }
 
