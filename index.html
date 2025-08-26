@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vahe Mirzoyan</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+            /* Use flexbox to center the content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 2rem 0;
+        }
+
+        /* Dark Theme Styles */
+        body.dark-theme {
+            background-color: #0b1222; /* Deep blue background */
+            color: #e2e8f0; /* Light gray text */
+        }
+        
+        /* Light Theme Styles */
+        body.light-theme {
+            background-color: #f0f2f5;
+            color: #1a202c; /* Dark text */
+        }
+        
+        /* The canvas is fixed to the background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Glassmorphism panel styles */
+        .glass-panel {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transform: translateY(0);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .dark-theme .glass-panel {
+            background-color: rgba(26, 32, 44, 0.5); /* Semi-transparent dark background */
+        }
+        .light-theme .glass-panel {
+            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent light background */
+        }
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.45);
+        }
+        
+        .social-icon {
+            transition: color 0.3s ease;
+        }
+        .dark-theme .social-icon {
+            color: #d1d5db; /* Light gray for dark theme */
+        }
+        .light-theme .social-icon {
+            color: #4b5563; /* Dark gray for light theme */
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive text sizes */
+        .profile-name {
+            font-size: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .profile-name {
+                font-size: 3.5rem;
+            }
+        }
+        
+        /* New: Responsive icon sizing for mobile devices */
+        @media (max-width: 768px) {
+            .social-icon .fa-3x {
+                font-size: 2rem; /* Reduced size for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <!-- The background canvas for particle animation -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Language and Theme Toggles -->
+    <div class="fixed top-4 right-4 flex space-x-2 z-50">
+        <button id="lang-toggle" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-semibold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+            FR
+        </button>
+        <button id="theme-toggle" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-semibold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <!-- Added more responsive padding and max-width for smaller screens -->
+    <div class="relative z-10 px-4 py-8 w-full max-w-4xl mx-auto flex flex-col items-center justify-center">
+        
+        <!-- Main Profile Panel -->
+        <div class="glass-panel rounded-3xl p-8 lg:p-12 text-center flex flex-col items-center shadow-2xl w-full">
+            <img class="w-36 h-36 rounded-full border-4 border-white dark:border-[#0b1222] shadow-lg object-cover mb-6" src="img/me.png" alt="Profile Picture">
+            <h1 id="name-surname" class="profile-name font-extrabold mb-2 leading-tight" data-i18n="nameSurname">Vahe Mirzoyan</h1>
+            <p id="description" class="text-lg lg:text-xl leading-relaxed max-w-xl mx-auto" data-i18n="description">
+                Computer Science Undergraduate | Tech Enthusiast | Exploring Cybersecurity, AI & Data Science
+            </p>
+        </div>
+
+        <!-- Social and Contact Panels - A flowing, responsive grid -->
+        <div class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-2xl">
+            <!-- LinkedIn -->
+            <div class="glass-panel rounded-2xl p-6 text-center">
+                <a href="https://www.linkedin.com/in/VaheMirzoyan/" class="social-icon flex flex-col items-center space-y-2 hover:text-blue-500">
+                    <i class="fab fa-linkedin-in fa-3x"></i>
+                    <span class="text-sm font-semibold">LinkedIn</span>
+                </a>
+            </div>
+            <!-- Facebook -->
+            <div class="glass-panel rounded-2xl p-6 text-center">
+                <a href="https://www.facebook.com/ItsVaheMirzoyan" class="social-icon flex flex-col items-center space-y-2 hover:text-blue-600">
+                    <i class="fab fa-facebook-f fa-3x"></i>
+                    <span class="text-sm font-semibold">Facebook</span>
+                </a>
+            </div>
+            <!-- Instagram -->
+            <div class="glass-panel rounded-2xl p-6 text-center">
+                <a href="https://www.instagram.com/vahe.mirzoyan/" class="social-icon flex flex-col items-center space-y-2 hover:text-pink-500">
+                    <i class="fab fa-instagram fa-3x"></i>
+                    <span class="text-sm font-semibold">Instagram</span>
+                </a>
+            </div>
+            <!-- GitHub -->
+            <div class="glass-panel rounded-2xl p-6 text-center">
+                <a href="https://github.com/MirzoyanVahe" class="social-icon flex flex-col items-center space-y-2 hover:text-white">
+                    <i class="fab fa-github fa-3x"></i>
+                    <span class="text-sm font-semibold">GitHub</span>
+                </a>
+            </div>
+            <!-- Telegram -->
+            <div class="glass-panel rounded-2xl p-6 text-center">
+                <a href="https://t.me/VaheMirzoyan" class="social-icon flex flex-col items-center space-y-2 hover:text-blue-400">
+                    <i class="fab fa-telegram-plane fa-3x"></i>
+                    <span class="text-sm font-semibold">Telegram</span>
+                </a>
+            </div>
+            <!-- Email -->
+            <div class="glass-panel rounded-2xl p-6 text-center">
+                <a href="mailto:contact@vahemirzoyan.com" class="social-icon flex flex-col items-center space-y-2 hover:text-red-400">
+                    <i class="fas fa-envelope fa-3x"></i>
+                    <span class="text-sm font-semibold">Email</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language content for English and French
+        const translations = {
+            en: {
+                nameSurname: "Vahe Mirzoyan",
+                description: "Computer Science Undergraduate | Tech Enthusiast | Exploring Cybersecurity, AI & Data Science",
+            },
+            fr: {
+                nameSurname: "Vahé MIRZOYAN",
+                description: "Étudiant en informatique | Passionné de technologie | Exploration de la cybersécurité, de l’IA et de la science des données",
+            }
+        };
+
+        let currentLang = 'en';
+        const langToggleBtn = document.getElementById('lang-toggle');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Function to update the text content based on the selected language
+        function updateContent(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Add an event listener to the language button to toggle the language
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            updateContent(currentLang);
+            langToggleBtn.textContent = currentLang === 'en' ? 'FR' : 'EN';
+        });
+
+        // Add an event listener to the theme button to toggle the theme
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // Initial content load
+        updateContent(currentLang);
+
+        // --- Particle Canvas Animation ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.color = 'rgba(126, 211, 255, ' + this.opacity + ')';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Loop particles when they go off-screen
+                if (this.x > canvas.width || this.x < 0) this.x = Math.random() * canvas.width;
+                if (this.y > canvas.height || this.y < 0) this.y = Math.random() * canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            let particleCount = Math.floor((canvas.width * canvas.height) / 10000);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Run the animations and initial content load
+        window.onload = function() {
+            initParticles();
+            animate();
+            updateContent(currentLang);
+        };
+    </script>
+</body>
+</html>
