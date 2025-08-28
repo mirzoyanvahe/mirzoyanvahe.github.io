@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vahe Mirzoyan - Certificate</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>High-Performance Computing Certification</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,8 +88,19 @@
         }
 
         /* Added a dedicated style for the main button */
-        .main-btn {
-            @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105;
+       .main-btn {
+            background-color: #2563eb; /* bg-blue-600 */
+            transition: background-color 0.3s ease;
+            color: white; /* text-white */
+            font-weight: 600; /* font-semibold */
+            padding: 0.75rem 2rem; /* py-3 px-8 */
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: transform 0.3s ease;
+        }
+        .main-btn:hover {
+            background-color: #1d4ed8; /* hover:bg-blue-700 */
+            transform: scale(1.05);
         }
 
         /* Modal specific styles */
