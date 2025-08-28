@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /hpc.html
+Disallow: /cyber.html
+Disallow: /certificates.html
