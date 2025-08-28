@@ -1,1 +1,0 @@
-# mirzoyanvahe.github.io
