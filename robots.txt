@@ -1,4 +1,15 @@
 User-agent: *
-Disallow: /hpc.html
-Disallow: /cyber.html
 Disallow: /certificates.html
+Disallow: /oif.html
+Disallow: /aiforgood.html
+Disallow: /cyber.html
+Disallow: /delf.html
+Disallow: /pet.html
+Disallow: /hpc.html
+Disallow: /certificates
+Disallow: /oif
+Disallow: /aiforgood
+Disallow: /cyber
+Disallow: /delf
+Disallow: /pet
+Disallow: /hpc
